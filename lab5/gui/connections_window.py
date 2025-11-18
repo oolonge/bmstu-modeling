@@ -272,46 +272,58 @@ class ConnectionsWindow(QDialog):
         instruction.setWordWrap(True)
         main_layout.addWidget(instruction)
 
-        # Контрол-панель
+        # Контрол-панель - центрированная над столбиками
         control_layout = QHBoxLayout()
+        control_layout.setSpacing(0)
 
-        # Операторы
+        # Левая часть - операторы (центрирована над левым столбиком)
+        left_control = QHBoxLayout()
+        left_control.addStretch()
+
         op_label = QLabel("Операторы:")
         op_label.setFont(QFont("Arial", FONT_SIZE_LABEL, QFont.Bold))
-        control_layout.addWidget(op_label)
+        left_control.addWidget(op_label)
 
         add_op_btn = QPushButton("+")
         add_op_btn.setFixedSize(30, 30)
         add_op_btn.setStyleSheet(self._get_control_button_style())
         add_op_btn.clicked.connect(self.canvas.add_operator)
-        control_layout.addWidget(add_op_btn)
+        left_control.addWidget(add_op_btn)
 
         remove_op_btn = QPushButton("−")
         remove_op_btn.setFixedSize(30, 30)
         remove_op_btn.setStyleSheet(self._get_control_button_style())
         remove_op_btn.clicked.connect(self.canvas.remove_operator)
-        control_layout.addWidget(remove_op_btn)
+        left_control.addWidget(remove_op_btn)
 
-        control_layout.addSpacing(30)
+        left_control.addStretch()
 
-        # Компьютеры
+        # Правая часть - компьютеры (центрирована над правым столбиком)
+        right_control = QHBoxLayout()
+        right_control.addStretch()
+
         comp_label = QLabel("Компьютеры:")
         comp_label.setFont(QFont("Arial", FONT_SIZE_LABEL, QFont.Bold))
-        control_layout.addWidget(comp_label)
+        right_control.addWidget(comp_label)
 
         add_comp_btn = QPushButton("+")
         add_comp_btn.setFixedSize(30, 30)
         add_comp_btn.setStyleSheet(self._get_control_button_style())
         add_comp_btn.clicked.connect(self.canvas.add_computer)
-        control_layout.addWidget(add_comp_btn)
+        right_control.addWidget(add_comp_btn)
 
         remove_comp_btn = QPushButton("−")
         remove_comp_btn.setFixedSize(30, 30)
         remove_comp_btn.setStyleSheet(self._get_control_button_style())
         remove_comp_btn.clicked.connect(self.canvas.remove_computer)
-        control_layout.addWidget(remove_comp_btn)
+        right_control.addWidget(remove_comp_btn)
 
-        control_layout.addStretch()
+        right_control.addStretch()
+
+        # Добавляем обе части в основной layout
+        control_layout.addLayout(left_control, 1)
+        control_layout.addLayout(right_control, 1)
+
         main_layout.addLayout(control_layout)
 
         # Канвас
@@ -332,7 +344,7 @@ class ConnectionsWindow(QDialog):
                 border-radius: 5px;
             }}
             QPushButton:hover {{
-                background-color: #229954;
+                background-color: #388E3C;
             }}
         """)
         save_button.clicked.connect(self.save_connections)

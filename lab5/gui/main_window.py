@@ -46,7 +46,13 @@ class MainWindow(QMainWindow):
         ]
 
         self.init_ui()
-        self.setStyleSheet(f"background-color: {COLOR_BACKGROUND};")
+        self.setStyleSheet(f"""
+            background-color: {COLOR_BACKGROUND};
+            QComboBox QAbstractItemView {{
+                background-color: white;
+                selection-background-color: #E0E0E0;
+            }}
+        """)
 
     def init_ui(self):
         """Инициализация интерфейса"""
@@ -96,14 +102,14 @@ class MainWindow(QMainWindow):
         connections_button.setFont(QFont("Arial", FONT_SIZE_BUTTON))
         connections_button.setStyleSheet("""
             QPushButton {
-                background-color: #9B59B6;
+                background-color: #2196F3;
                 color: white;
                 border: none;
                 padding: 10px 20px;
                 border-radius: 5px;
             }
             QPushButton:hover {
-                background-color: #8E44AD;
+                background-color: #1976D2;
             }
         """)
         connections_button.clicked.connect(self.open_connections_window)
@@ -111,17 +117,17 @@ class MainWindow(QMainWindow):
 
         run_button = QPushButton("Запустить моделирование")
         run_button.setFont(QFont("Arial", FONT_SIZE_BUTTON))
-        run_button.setStyleSheet(f"""
-            QPushButton {{
-                background-color: {COLOR_BUTTON};
+        run_button.setStyleSheet("""
+            QPushButton {
+                background-color: #4CAF50;
                 color: white;
                 border: none;
                 padding: 10px 20px;
                 border-radius: 5px;
-            }}
-            QPushButton:hover {{
-                background-color: {COLOR_BUTTON_HOVER};
-            }}
+            }
+            QPushButton:hover {
+                background-color: #388E3C;
+            }
         """)
         run_button.clicked.connect(self.run_simulation)
         buttons_layout.addWidget(run_button)
@@ -351,14 +357,22 @@ class MainWindow(QMainWindow):
         """Загрузить параметры оператора"""
         if operator_id < len(self.operator_params):
             params = self.operator_params[operator_id]
+            # Блокируем сигналы, чтобы не сохранять промежуточные значения
+            self.operator_mean_spinbox.blockSignals(True)
+            self.operator_deviation_spinbox.blockSignals(True)
             self.operator_mean_spinbox.setValue(params['mean'])
             self.operator_deviation_spinbox.setValue(params['deviation'])
+            self.operator_mean_spinbox.blockSignals(False)
+            self.operator_deviation_spinbox.blockSignals(False)
 
     def _load_computer_params(self, computer_id: int):
         """Загрузить параметры компьютера"""
         if computer_id < len(self.computer_params):
             params = self.computer_params[computer_id]
+            # Блокируем сигналы для консистентности
+            self.computer_time_spinbox.blockSignals(True)
             self.computer_time_spinbox.setValue(params['processing_time'])
+            self.computer_time_spinbox.blockSignals(False)
 
     def _on_operator_param_changed(self):
         """Обработка изменения параметров оператора"""
