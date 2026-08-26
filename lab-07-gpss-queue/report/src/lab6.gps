@@ -1,0 +1,13 @@
+GENERATE (UNIFORM(1,1,5)),,,1000
+Enqueue QUEUE QSystemQueue
+
+SEIZE Operator
+DEPART QSystemQueue
+
+ADVANCE(NORMAL(1,9,2))
+RELEASE Operator
+TRANSFER 0.7,,Enqueue
+
+TERMINATE 1
+
+START 1000

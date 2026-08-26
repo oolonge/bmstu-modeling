@@ -1,0 +1,76 @@
+          START TIME           END TIME  BLOCKS  FACILITIES  STORAGES
+                0.000           6980.179    33        5          0
+
+
+              NAME                       VALUE
+          COMPUTER_1                     17.000
+          COMPUTER_2                     23.000
+          COMP_1                      10004.000
+          COMP_2                      10006.000
+          ENDING                         31.000
+          FAIL                           30.000
+          NFAIL                       10007.000
+          OPERATOR_1                      2.000
+          OPERATOR_2                      7.000
+          OPERATOR_3                     12.000
+          OPER_1                      10000.000
+          OPER_2                      10001.000
+          OPER_3                      10002.000
+          PROB                        10008.000
+          QUEUE_1                     10003.000
+          QUEUE_2                     10005.000
+          SUCCESS                        29.000
+
+
+ LABEL              LOC  BLOCK TYPE     ENTRY COUNT CURRENT COUNT RETRY
+                    1    GENERATE           300             0       0
+OPERATOR_1          2    GATE               300             0       0
+                    3    SEIZE              121             0       0
+                    4    ADVANCE            121             0       0
+                    5    RELEASE            121             0       0
+                    6    TRANSFER           121             0       0
+OPERATOR_2          7    GATE               179             0       0
+                    8    SEIZE               59             0       0
+                    9    ADVANCE             59             0       0
+                   10    RELEASE             59             0       0
+                   11    TRANSFER            59             0       0
+OPERATOR_3         12    GATE               120             0       0
+                   13    SEIZE               51             0       0
+                   14    ADVANCE             51             0       0
+                   15    RELEASE             51             0       0
+                   16    TRANSFER            51             0       0
+COMPUTER_1         17    QUEUE              180             0       0
+                   18    SEIZE              180             0       0
+                   19    DEPART             180             0       0
+                   20    ADVANCE            180             0       0
+                   21    RELEASE            180             0       0
+                   22    TRANSFER           180             0       0
+COMPUTER_2         23    QUEUE               51             0       0
+                   24    SEIZE               51             0       0
+                   25    DEPART              51             0       0
+                   26    ADVANCE             51             0       0
+                   27    RELEASE             51             0       0
+                   28    TRANSFER            51             0       0
+SUCCESS            29    TRANSFER           231             0       0
+FAIL               30    TRANSFER            69             0       0
+ENDING             31    SAVEVALUE          300             0       0
+                   32    SAVEVALUE          300             0       0
+                   33    TERMINATE          300             0       0
+
+
+FACILITY         ENTRIES  UTIL.   AVE. TIME AVAIL. OWNER PEND INTER RETRY DELAY
+ OPER_1             121    0.345      19.924  1        0    0    0     0      0
+ OPER_2              59    0.338      40.036  1        0    0    0     0      0
+ OPER_3              51    0.312      42.640  1        0    0    0     0      0
+ COMP_1             180    0.387      15.000  1        0    0    0     0      0
+ COMP_2              51    0.219      30.000  1        0    0    0     0      0
+
+
+QUEUE              MAX CONT. ENTRY ENTRY(0) AVE.CONT. AVE.TIME   AVE.(-0) RETRY
+ QUEUE_1            32    0    180      2     7.305    220.727    222.655   0
+ QUEUE_2           115    0     51      1    57.013   1722.771   1730.262   0
+
+
+SAVEVALUE               RETRY       VALUE
+ NFAIL                    0         69.000
+ PROB                     0          0.230
